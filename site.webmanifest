@@ -1,0 +1,17 @@
+{
+  "name": "Nocturne Ink",
+  "short_name": "Nocturne Ink",
+  "description": "Premium tattoo studio concept in Chennai.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#080808",
+  "theme_color": "#080808",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
