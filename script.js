@@ -55,7 +55,7 @@ if (!document.querySelector('.floating-whatsapp')) {
   whatsapp.href = 'https://wa.me/910000000000';
   whatsapp.target = '_blank';
   whatsapp.rel = 'noreferrer';
-  whatsapp.setAttribute('aria-label', 'Chat with Nocturne Ink on WhatsApp');
+  whatsapp.setAttribute('aria-label', 'Chat with the studio on WhatsApp');
   whatsapp.innerHTML = '<span class="wa-dot"></span><span class="wa-label">WhatsApp studio</span>';
   document.body.appendChild(whatsapp);
 }
@@ -117,3 +117,42 @@ if (galleryTiles.length) {
   lightbox.addEventListener('click', e => { if (e.target === lightbox) close(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 }
+
+function applySiteConfig() {
+  const config = window.NOCTURNE_CONFIG;
+  if (!config) return;
+
+  const waText = encodeURIComponent(config.whatsappMessage || 'Hi, I want to book a tattoo consultation.');
+  const waUrl = `https://wa.me/${config.whatsappNumber}?text=${waText}`;
+
+  document.querySelectorAll('a[href*="wa.me/"]').forEach(link => {
+    link.href = waUrl;
+  });
+
+  const floatingWhatsapp = document.querySelector('.floating-whatsapp');
+  if (floatingWhatsapp) {
+    floatingWhatsapp.href = waUrl;
+    floatingWhatsapp.setAttribute('aria-label', `Chat with ${config.brandName} on WhatsApp`);
+  }
+
+  document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
+    link.href = `mailto:${config.email}`;
+  });
+
+  document.querySelectorAll('form[action^="mailto:"]').forEach(form => {
+    form.action = `mailto:${config.email}`;
+  });
+
+  document.querySelectorAll('.brand-copy strong, .footer-brand strong').forEach(el => {
+    el.textContent = config.brandName.toUpperCase();
+  });
+
+  document.querySelectorAll('.brand-copy small').forEach(el => {
+    el.textContent = `INK · ${config.city.toUpperCase()}`;
+  });
+}
+
+const configScript = document.createElement('script');
+configScript.src = 'site-config.js';
+configScript.onload = applySiteConfig;
+document.head.appendChild(configScript);
