@@ -1,10 +1,7 @@
 /* Phase 6 — production readiness and performance polish */
 
-:root {
-  --content-max: 1440px;
-}
+:root { --content-max: 1440px; }
 
-/* Skip link for keyboard users */
 .skip-link {
   position: fixed;
   top: 10px;
@@ -18,7 +15,6 @@
 }
 .skip-link:focus { transform: translateY(0); }
 
-/* Reduce off-screen rendering cost on long pages */
 .artist-profile,
 .gallery-section,
 .reviews,
@@ -31,19 +27,17 @@
   contain-intrinsic-size: 900px;
 }
 
-/* Keep text readable on ultra-wide displays */
-.section,
+/* Cap content blocks, not full-width section shells/backgrounds. */
 .page-hero-copy,
 .hero-content,
-.footer > *,
-.deposit-band,
-.proof-strip {
+.footer-brand,
+.footer-links,
+.footer-bottom {
   max-width: var(--content-max);
   margin-left: auto;
   margin-right: auto;
 }
 
-/* Visible keyboard focus without changing mouse styling */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -55,17 +49,14 @@ summary:focus-visible,
   outline-offset: 4px;
 }
 
-/* Avoid layout jumps during font loading */
 body { text-rendering: optimizeLegibility; }
 
-/* Better mobile tap targets */
 @media (max-width: 900px) {
   .nav a,
   .footer-links a,
   .mobile-bookbar a { min-height: 44px; display: inline-flex; align-items: center; }
 }
 
-/* Print fallback for consultation details */
 @media print {
   .site-header,.floating-whatsapp,.mobile-bookbar,.noise-overlay,.booking,.footer { display:none!important; }
   body { background:#fff; color:#111; }
