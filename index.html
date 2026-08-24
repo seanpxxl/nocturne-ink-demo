@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#080808" />
-  <meta name="description" content="Nocturne Ink — a premium tattoo studio in Chennai specializing in realism, blackwork, fine-line, Japanese, traditional and geometric tattooing." />
+  <meta name="description" content="Nocturne Ink — a premium tattoo studio concept in Chennai specializing in realism, blackwork, fine-line, Japanese, traditional and geometric tattooing." />
   <title>Nocturne Ink — Chennai Tattoo Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,14 +13,14 @@
 </head>
 <body>
   <header class="site-header" id="top">
-    <a class="brand" href="#top" aria-label="Nocturne Ink home">
+    <a class="brand" href="index.html" aria-label="Nocturne Ink home">
       <span class="brand-mark">N</span>
       <span class="brand-copy"><strong>NOCTURNE</strong><small>INK · CHENNAI</small></span>
     </a>
     <button class="menu-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
     <nav class="nav" aria-label="Main navigation">
-      <a href="#studio">Studio</a><a href="#styles">Styles</a><a href="#artists">Artists</a><a href="#work">Work</a>
-      <a class="nav-cta" href="#booking">Book a session</a>
+      <a href="#studio">Studio</a><a href="artists.html">Artists</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a>
+      <a class="nav-cta" href="booking.html">Book a session</a>
     </nav>
   </header>
 
@@ -33,8 +33,8 @@
         <h1>WEAR YOUR<br><em>STORY.</em></h1>
         <p class="hero-copy">Custom tattooing for people who want art with presence. Designed around you, built to last.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#booking">Start your tattoo</a>
-          <a class="text-link" href="#work">Explore our work <span>↗</span></a>
+          <a class="btn btn-primary" href="booking.html">Start your tattoo</a>
+          <a class="text-link" href="gallery.html">Explore our work <span>↗</span></a>
         </div>
       </div>
       <div class="hero-meta"><span>Custom · Original · Personal</span><span class="scroll">Scroll ↓</span></div>
@@ -49,7 +49,7 @@
       <div class="section-label reveal">01 / THE STUDIO</div>
       <div class="split-content reveal">
         <h2>Not just ink.<br><em>A mark that means something.</em></h2>
-        <div class="split-copy"><p>Nocturne Ink is a fictional premium tattoo studio concept built for Chennai. Our approach combines meticulous craft, bold visual identity and a consultation-first experience.</p><p>Every piece starts with your story — then we shape it into artwork made specifically for your body.</p><a class="text-link" href="#booking">Plan your piece <span>↗</span></a></div>
+        <div class="split-copy"><p>Nocturne Ink is a fictional premium tattoo studio concept built for Chennai. Our approach combines meticulous craft, bold visual identity and a consultation-first experience.</p><p>Every piece starts with your story — then we shape it into artwork made specifically for your body.</p><a class="text-link" href="booking.html">Plan your piece <span>↗</span></a></div>
       </div>
     </section>
 
@@ -65,17 +65,19 @@
     <section class="section artists" id="artists">
       <div class="section-head reveal"><div class="section-label">02 / ARTISTS</div><h2>Different hands.<br><em>One standard.</em></h2></div>
       <div class="artist-grid">
-        <article class="artist-card reveal"><div class="artist-img artist-a"></div><div class="artist-info"><div><h3>Arjun Vale</h3><p>Realism · Black & Grey</p></div><span>↗</span></div></article>
-        <article class="artist-card reveal"><div class="artist-img artist-b"></div><div class="artist-info"><div><h3>Mira Sen</h3><p>Fine-line · Ornamental</p></div><span>↗</span></div></article>
-        <article class="artist-card reveal"><div class="artist-img artist-c"></div><div class="artist-info"><div><h3>Ren Ishaan</h3><p>Japanese · Blackwork</p></div><span>↗</span></div></article>
+        <a class="artist-card reveal" href="artists.html#arjun"><div class="artist-img artist-a"></div><div class="artist-info"><div><h3>Arjun Vale</h3><p>Realism · Black & Grey</p></div><span>↗</span></div></a>
+        <a class="artist-card reveal" href="artists.html#mira"><div class="artist-img artist-b"></div><div class="artist-info"><div><h3>Mira Sen</h3><p>Fine-line · Ornamental</p></div><span>↗</span></div></a>
+        <a class="artist-card reveal" href="artists.html#ren"><div class="artist-img artist-c"></div><div class="artist-info"><div><h3>Ren Ishaan</h3><p>Japanese · Blackwork</p></div><span>↗</span></div></a>
       </div>
+      <div class="section-more reveal"><a class="text-link" href="artists.html">Meet every artist <span>↗</span></a></div>
     </section>
 
     <section class="work" id="work">
       <div class="work-intro reveal"><div class="section-label">03 / SELECTED WORK</div><h2>Made to be<br><em>remembered.</em></h2></div>
-      <div class="work-grid">
+      <a class="work-grid" href="gallery.html" aria-label="View tattoo gallery">
         <div class="work-img work-a reveal"></div><div class="work-img work-b reveal"></div><div class="work-img work-c reveal"></div><div class="work-img work-d reveal"></div>
-      </div>
+      </a>
+      <div class="section-more work-more reveal"><a class="text-link" href="gallery.html">View full gallery <span>↗</span></a></div>
     </section>
 
     <section class="process section">
@@ -90,13 +92,13 @@
 
     <section class="booking" id="booking">
       <div class="booking-bg"></div><div class="booking-overlay"></div>
-      <div class="booking-content reveal"><p class="eyebrow">Ready when you are</p><h2>YOUR NEXT<br><em>PIECE STARTS HERE.</em></h2><p>Send us the idea. We’ll help you take it from reference to original artwork.</p><div class="booking-actions"><a class="btn btn-primary" href="mailto:hello@nocturneink.demo">Book consultation</a><a class="btn btn-ghost" href="https://wa.me/910000000000" target="_blank" rel="noreferrer">WhatsApp</a></div></div>
+      <div class="booking-content reveal"><p class="eyebrow">Ready when you are</p><h2>YOUR NEXT<br><em>PIECE STARTS HERE.</em></h2><p>Send us the idea. We’ll help you take it from reference to original artwork.</p><div class="booking-actions"><a class="btn btn-primary" href="booking.html">Book consultation</a><a class="btn btn-ghost" href="contact.html">Contact studio</a></div></div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="footer-brand"><span class="brand-mark">N</span><div><strong>NOCTURNE INK</strong><p>Premium tattoo studio concept · Chennai</p></div></div>
-    <div class="footer-links"><a href="#studio">Studio</a><a href="#artists">Artists</a><a href="#work">Gallery</a><a href="#booking">Booking</a><a href="#top">Back to top ↑</a></div>
+    <div class="footer-links"><a href="index.html#studio">Studio</a><a href="artists.html">Artists</a><a href="gallery.html">Gallery</a><a href="booking.html">Booking</a><a href="contact.html">Contact</a></div>
     <div class="footer-bottom"><span>© 2026 Nocturne Ink. Demo concept.</span><span>Instagram · WhatsApp · Chennai</span></div>
   </footer>
 
