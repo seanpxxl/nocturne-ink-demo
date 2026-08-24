@@ -1,17 +1,12 @@
-const phase3Styles = document.createElement('link');
-phase3Styles.rel = 'stylesheet';
-phase3Styles.href = 'phase3.css';
-document.head.appendChild(phase3Styles);
-
-const phase4Styles = document.createElement('link');
-phase4Styles.rel = 'stylesheet';
-phase4Styles.href = 'phase4.css';
-document.head.appendChild(phase4Styles);
-
-const phase6Styles = document.createElement('link');
-phase6Styles.rel = 'stylesheet';
-phase6Styles.href = 'phase6.css';
-document.head.appendChild(phase6Styles);
+const styleFiles = ['phase3.css', 'phase4.css', 'phase6.css', 'final-polish.css'];
+styleFiles.forEach(href => {
+  if (!document.querySelector(`link[href="${href}"]`)) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    document.head.appendChild(link);
+  }
+});
 
 const favicon = document.createElement('link');
 favicon.rel = 'icon';
@@ -35,19 +30,30 @@ if (!document.querySelector('.skip-link')) {
 
 const menuButton = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.nav');
+if (nav && !nav.getAttribute('aria-label')) nav.setAttribute('aria-label', 'Main navigation');
 
 menuButton?.addEventListener('click', () => {
-  const open = nav.classList.toggle('open');
+  const open = nav?.classList.toggle('open') || false;
   menuButton.setAttribute('aria-expanded', String(open));
+  menuButton.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   document.body.classList.toggle('menu-open', open);
 });
 
 document.querySelectorAll('.nav a').forEach(link => {
   link.addEventListener('click', () => {
-    nav.classList.remove('open');
+    nav?.classList.remove('open');
     document.body.classList.remove('menu-open');
     menuButton?.setAttribute('aria-expanded', 'false');
+    menuButton?.setAttribute('aria-label', 'Open menu');
   });
+});
+
+const pageName = location.pathname.split('/').pop() || 'index.html';
+document.querySelectorAll('.nav a').forEach(link => {
+  const href = link.getAttribute('href') || '';
+  const hrefPage = href.split('#')[0] || 'index.html';
+  if ((pageName === '' || pageName === 'index.html') && (href === '#studio' || hrefPage === 'index.html')) return;
+  if (hrefPage === pageName) link.setAttribute('aria-current', 'page');
 });
 
 const header = document.querySelector('.site-header');
@@ -75,7 +81,7 @@ if (!document.querySelector('.floating-whatsapp')) {
   whatsapp.className = 'floating-whatsapp';
   whatsapp.href = 'https://wa.me/910000000000';
   whatsapp.target = '_blank';
-  whatsapp.rel = 'noreferrer';
+  whatsapp.rel = 'noopener noreferrer';
   whatsapp.setAttribute('aria-label', 'Chat with the studio on WhatsApp');
   whatsapp.innerHTML = '<span class="wa-dot"></span><span class="wa-label">WhatsApp studio</span>';
   document.body.appendChild(whatsapp);
@@ -95,32 +101,56 @@ if (!document.querySelector('.mobile-bookbar')) {
   document.body.appendChild(bar);
 }
 
+let toastTimer;
+function showDemoToast(message) {
+  let toast = document.querySelector('.demo-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.className = 'demo-toast';
+    toast.setAttribute('role', 'status');
+    toast.setAttribute('aria-live', 'polite');
+    document.body.appendChild(toast);
+  }
+  toast.innerHTML = `<strong>Demo preview:</strong> ${message}`;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 4200);
+}
+
 const galleryTiles = [...document.querySelectorAll('.gallery-tile')];
 if (galleryTiles.length) {
   const lightbox = document.createElement('div');
   lightbox.className = 'lightbox';
   lightbox.setAttribute('aria-hidden', 'true');
+  lightbox.setAttribute('role', 'dialog');
+  lightbox.setAttribute('aria-modal', 'true');
+  lightbox.setAttribute('aria-label', 'Tattoo gallery preview');
   lightbox.innerHTML = '<button class="lightbox-close" aria-label="Close gallery preview">×</button><div class="lightbox-panel"><div class="lightbox-image"></div><div class="lightbox-copy"><span></span><h3></h3><p>Demo portfolio image. Production versions should use client-owned tattoo photography.</p></div></div>';
   document.body.appendChild(lightbox);
 
   const imageEl = lightbox.querySelector('.lightbox-image');
   const typeEl = lightbox.querySelector('.lightbox-copy span');
   const titleEl = lightbox.querySelector('.lightbox-copy h3');
+  let lastFocusedTile = null;
+
   const close = () => {
     lightbox.classList.remove('open');
     lightbox.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    lastFocusedTile?.focus();
   };
 
   galleryTiles.forEach(tile => {
     tile.setAttribute('tabindex', '0');
     tile.setAttribute('role', 'button');
+    tile.setAttribute('aria-label', `Open ${tile.querySelector('figcaption strong')?.textContent || 'tattoo'} preview`);
     const open = () => {
+      lastFocusedTile = tile;
       const img = tile.querySelector('.gallery-img');
       const caption = tile.querySelector('figcaption');
-      imageEl.style.backgroundImage = getComputedStyle(img).backgroundImage;
-      typeEl.textContent = caption?.querySelector('span')?.textContent || 'Selected work';
-      titleEl.textContent = caption?.querySelector('strong')?.textContent || 'Tattoo study';
+      if (imageEl && img) imageEl.style.backgroundImage = getComputedStyle(img).backgroundImage;
+      if (typeEl) typeEl.textContent = caption?.querySelector('span')?.textContent || 'Selected work';
+      if (titleEl) titleEl.textContent = caption?.querySelector('strong')?.textContent || 'Tattoo study';
       lightbox.classList.add('open');
       lightbox.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
@@ -135,9 +165,11 @@ if (galleryTiles.length) {
     });
   });
 
-  lightbox.querySelector('.lightbox-close').addEventListener('click', close);
+  lightbox.querySelector('.lightbox-close')?.addEventListener('click', close);
   lightbox.addEventListener('click', e => { if (e.target === lightbox) close(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && lightbox.classList.contains('open')) close();
+  });
 }
 
 function ensureMeta(name, content, property = false) {
@@ -158,16 +190,28 @@ function applySiteConfig() {
   const waText = encodeURIComponent(config.whatsappMessage || 'Hi, I want to book a tattoo consultation.');
   const waUrl = `https://wa.me/${config.whatsappNumber}?text=${waText}`;
 
-  document.querySelectorAll('a[href*="wa.me/"]').forEach(link => { link.href = waUrl; });
+  document.querySelectorAll('a[href*="wa.me/"]').forEach(link => {
+    link.href = waUrl;
+    link.rel = 'noopener noreferrer';
+    if (config.demoMode) link.dataset.demoContact = 'true';
+  });
 
   const floatingWhatsapp = document.querySelector('.floating-whatsapp');
   if (floatingWhatsapp) {
     floatingWhatsapp.href = waUrl;
     floatingWhatsapp.setAttribute('aria-label', `Chat with ${config.brandName} on WhatsApp`);
+    if (config.demoMode) floatingWhatsapp.dataset.demoContact = 'true';
   }
 
-  document.querySelectorAll('a[href^="mailto:"]').forEach(link => { link.href = `mailto:${config.email}`; });
-  document.querySelectorAll('form[action^="mailto:"]').forEach(form => { form.action = `mailto:${config.email}`; });
+  document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
+    link.href = `mailto:${config.email}`;
+    if (config.demoMode) link.dataset.demoContact = 'true';
+  });
+
+  document.querySelectorAll('form[action^="mailto:"]').forEach(form => {
+    form.action = `mailto:${config.email}`;
+    if (config.demoMode) form.dataset.demoContact = 'true';
+  });
 
   document.querySelectorAll('.brand-copy strong, .footer-brand strong').forEach(el => {
     el.textContent = config.brandName.toUpperCase();
@@ -176,6 +220,23 @@ function applySiteConfig() {
   document.querySelectorAll('.brand-copy small').forEach(el => {
     el.textContent = `INK · ${config.city.toUpperCase()}`;
   });
+
+  if (config.demoMode) {
+    document.querySelectorAll('a[data-demo-contact="true"]').forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        showDemoToast('contact details are intentionally placeholders. A real client build will connect the studio’s actual WhatsApp, email and booking destination.');
+      });
+    });
+
+    document.querySelectorAll('form[data-demo-contact="true"]').forEach(form => {
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        if (!form.reportValidity()) return;
+        showDemoToast('the consultation form is working as a UI demo. The production build will submit to the studio’s real inbox, form service or CRM.');
+      });
+    });
+  }
 
   const currentPath = location.pathname.split('/').pop() || 'index.html';
   const pageUrl = new URL(currentPath === 'index.html' ? './' : currentPath, config.siteUrl).href;
@@ -197,8 +258,8 @@ function applySiteConfig() {
     '@type': 'TattooParlor',
     name: config.brandName,
     url: config.siteUrl,
-    email: config.email,
-    telephone: config.whatsappNumber ? `+${config.whatsappNumber}` : undefined,
+    email: config.demoMode ? undefined : config.email,
+    telephone: config.demoMode || !config.whatsappNumber ? undefined : `+${config.whatsappNumber}`,
     address: {
       '@type': 'PostalAddress',
       streetAddress: config.studioAddress,
