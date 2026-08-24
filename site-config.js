@@ -10,5 +10,12 @@ window.NOCTURNE_CONFIG = {
   studioAddress: "Chennai, Tamil Nadu",
   bookingDepositNote: "Deposit amount depends on scope and session length.",
   siteUrl: "https://seanpxxl.github.io/nocturne-ink-demo/",
-  demoMode: true
+  demoMode: true,
+  schemaEnabled: false
 };
+
+/* The demo is fictional, so remove LocalBusiness/TattooParlor structured data if older shared logic injects it. */
+if (window.NOCTURNE_CONFIG.demoMode || !window.NOCTURNE_CONFIG.schemaEnabled) {
+  window.setTimeout(() => document.querySelector('#studio-schema')?.remove(), 100);
+  window.addEventListener('load', () => document.querySelector('#studio-schema')?.remove(), { once: true });
+}
