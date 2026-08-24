@@ -1,0 +1,92 @@
+/* Curated demo asset map — verified Unsplash sources, matched to content */
+
+/* Artist fallback: real tattoo-work context rather than an unrelated portrait. */
+.artist-a,
+#arjun .profile-image {
+  background-image: url('https://images.unsplash.com/photo-1769605767707-80909ec160cc?auto=format&fit=crop&fm=jpg&q=78&w=1600');
+  background-color: #151515;
+  background-position: center;
+}
+
+/* Style cards: verified image sources matched to the named tattoo direction. */
+.style-2 {
+  background-image: url('https://images.unsplash.com/photo-1557130641-1b14718f096a?auto=format&fit=crop&fm=jpg&q=78&w=1400');
+  background-color: #111;
+}
+.style-3 {
+  background-image: url('https://images.unsplash.com/photo-1651692883249-ed36b3523419?auto=format&fit=crop&fm=jpg&q=78&w=1400');
+  background-color: #111;
+}
+.style-4 {
+  background-image: url('https://images.unsplash.com/photo-1659693707379-f7b696d92011?auto=format&fit=crop&fm=jpg&q=78&w=1400');
+  background-color: #111;
+}
+.style-6 {
+  background-image: url('https://images.unsplash.com/photo-1564755685915-08c04ad51d15?auto=format&fit=crop&fm=jpg&q=78&w=1400');
+  background-color: #111;
+}
+
+/* Gallery: each image is deliberately paired with its displayed category/title. */
+.gallery-1 { background-image: url('https://images.unsplash.com/photo-1640202430303-a71359ade259?auto=format&fit=crop&fm=jpg&q=80&w=1400'); background-color:#111; }
+.gallery-2 { background-image: url('https://images.unsplash.com/photo-1651692883249-ed36b3523419?auto=format&fit=crop&fm=jpg&q=80&w=1400'); background-color:#111; }
+.gallery-3 { background-image: url('https://images.unsplash.com/photo-1659693707379-f7b696d92011?auto=format&fit=crop&fm=jpg&q=80&w=1400'); background-color:#111; }
+.gallery-4 { background-image: url('https://images.unsplash.com/photo-1557130641-1b14718f096a?auto=format&fit=crop&fm=jpg&q=80&w=1400'); background-color:#111; }
+.gallery-5 { background-image: url('https://images.unsplash.com/photo-1564755685915-08c04ad51d15?auto=format&fit=crop&fm=jpg&q=80&w=1400'); background-color:#111; }
+.gallery-6 { background-image: url('https://images.unsplash.com/photo-1770224097206-c1e39d61b4a3?auto=format&fit=crop&fm=jpg&q=80&w=1400'); background-color:#111; }
+.gallery-7 { background-image: url('https://images.unsplash.com/photo-1753260724749-25110c0ce91c?auto=format&fit=crop&fm=jpg&q=80&w=1400'); background-color:#111; }
+.gallery-8 { background-image: url('https://images.unsplash.com/photo-1557130641-1b14718f096a?auto=format&fit=crop&fm=jpg&q=80&w=1400'); background-color:#111; background-position:center 42%; }
+
+/* Gallery controls are genuine buttons now. */
+.gallery-filter {
+  align-items: center;
+  gap: 10px;
+}
+.gallery-filter button {
+  appearance: none;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #777169;
+  padding: 9px 12px;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+  transition: color .2s ease, border-color .2s ease, background .2s ease;
+}
+.gallery-filter button:hover,
+.gallery-filter button:focus-visible {
+  color: #f4f1ea;
+  border-color: #37312e;
+}
+.gallery-filter button.is-active {
+  color: #fff;
+  border-color: #8f1b22;
+  background: rgba(179,18,29,.08);
+}
+.gallery-filter-status {
+  margin-left: auto;
+  color: #5f5952;
+  font-size: 9px;
+  letter-spacing: .08em;
+}
+.gallery-tile.is-filtered-out {
+  display: none;
+}
+
+/* Prevent a remote-image failure from presenting as a blank white/transparent card. */
+.style-card,
+.artist-img,
+.profile-image,
+.gallery-img,
+.work-img,
+.page-hero,
+.hero-media,
+.booking-bg {
+  background-color: #111;
+}
+
+@media (max-width: 700px) {
+  .gallery-filter { gap: 6px; }
+  .gallery-filter button { padding: 9px 8px; }
+  .gallery-filter-status { width: 100%; margin-left: 0; padding-top: 4px; }
+}
