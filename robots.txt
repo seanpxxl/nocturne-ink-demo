@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://seanpxxl.github.io/nocturne-ink-demo/sitemap.xml
