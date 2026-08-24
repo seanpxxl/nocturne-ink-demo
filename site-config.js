@@ -9,5 +9,6 @@ window.NOCTURNE_CONFIG = {
   mapsUrl: "#",
   studioAddress: "Chennai, Tamil Nadu",
   bookingDepositNote: "Deposit amount depends on scope and session length.",
-  siteUrl: "https://seanpxxl.github.io/nocturne-ink-demo/"
+  siteUrl: "https://seanpxxl.github.io/nocturne-ink-demo/",
+  demoMode: true
 };
