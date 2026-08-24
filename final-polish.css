@@ -1,3 +1,5 @@
+@import url('asset-library.css');
+
 /* Final master QA polish */
 
 .demo-toast {
@@ -33,39 +35,19 @@
 
 .menu-toggle { cursor: pointer; }
 body.menu-open { overflow: hidden; }
-
-/* Prevent accidental text selection on interactive gallery cards. */
 .gallery-tile[role="button"] { user-select: none; cursor: zoom-in; }
-
-/* Slightly stronger affordance for demo contact CTAs. */
 a[data-demo-contact="true"], button[data-demo-contact="true"] { position: relative; }
-
 a,button,.gallery-tile,summary { touch-action: manipulation; }
 
-/* Keep premium motion on desktop while avoiding GPU-heavy effects on phones/tablets. */
 @media (max-width: 900px) {
   .demo-toast { bottom: 88px; }
   .noise-overlay { display: none !important; }
-  .site-header,
-  .site-header.scrolled,
-  .lightbox,
-  .gallery-img:after { backdrop-filter: none !important; }
-  .hero-media,
-  .booking-bg,
-  .page-hero,
-  .style-card,
-  .artist-card,
-  .artist-img,
-  .work-img,
-  .profile-image,
-  .review-card {
+  .site-header,.site-header.scrolled,.lightbox,.gallery-img:after { backdrop-filter: none !important; }
+  .hero-media,.booking-bg,.page-hero,.style-card,.artist-card,.artist-img,.work-img,.profile-image,.review-card {
     transition: none !important;
     transform: none !important;
   }
-  .hero:hover .hero-media,
-  .style-card:hover,
-  .artist-card:hover,
-  .artist-card:hover .artist-img {
+  .hero:hover .hero-media,.style-card:hover,.artist-card:hover,.artist-card:hover .artist-img {
     transform: none !important;
     box-shadow: none !important;
   }
