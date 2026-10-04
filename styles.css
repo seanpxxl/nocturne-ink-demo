@@ -23,7 +23,7 @@ a{color:inherit;text-decoration:none}
   background:
     linear-gradient(90deg, rgba(5,5,5,.97) 0%, rgba(5,5,5,.88) 36%, rgba(5,5,5,.52) 62%, rgba(5,5,5,.18) 100%),
     linear-gradient(180deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.18) 70%, rgba(0,0,0,.70) 100%),
-    url("assets/nocturne-hero.png") center center / cover no-repeat;
+    url("assets/nocturne-hero.jpg") center center / cover no-repeat;
 }
 .hero-content{padding:125px 4.7vw 140px;z-index:2}.eyebrow,.section-label{font-size:11px;font-weight:600;color:var(--beige);letter-spacing:.03em}.eyebrow i{display:inline-block;width:35px;height:1px;background:var(--red);vertical-align:middle;margin-right:14px}
 h1,h2{font-family:"Cormorant Garamond",serif;margin:0;line-height:.92;letter-spacing:-.03em}
