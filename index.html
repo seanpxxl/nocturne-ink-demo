@@ -1,286 +1,58 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Nocturne Ink — Tattoo Atelier Chennai</title>
-  <meta name="description" content="Nocturne Ink — premium tattoo studio demo website." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#080808" />
+  <meta name="description" content="Nocturne Ink — a premium tattoo studio concept in Chennai specializing in realism, blackwork, fine-line, Japanese, traditional and geometric tattooing." />
+  <meta property="og:title" content="Nocturne Ink — Chennai Tattoo Studio" />
+  <meta property="og:description" content="Custom tattooing with a dark luxury edge. Explore artists, work and consultation options." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://seanpxxl.github.io/nocturne-ink-demo/" />
+  <title>Nocturne Ink — Chennai Tattoo Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="topbar">
-    <span>CHENNAI, INDIA · OPEN DAILY 11AM–10PM</span>
-    <span class="topbar-social">INSTAGRAM · FACEBOOK · WHATSAPP</span>
-  </div>
-
-  <header class="nav-wrap">
-    <a href="#home" class="brand">NOCTURNE <span>INK</span></a>
-    <nav class="desktop-nav">
-      <a href="#studio">STUDIO</a>
-      <a href="#artists">ARTISTS</a>
-      <a href="#styles">STYLES</a>
-      <a href="#gallery">GALLERY</a>
-      <a href="#aftercare">AFTERCARE</a>
-      <a href="#contact">CONTACT</a>
-    </nav>
-    <a class="btn btn-primary nav-cta" href="#booking-form">BOOK APPOINTMENT</a>
-    <button class="menu-btn" aria-label="Open navigation" aria-expanded="false">
-      <span></span><span></span>
-    </button>
+  <header class="site-header" id="top">
+    <a class="brand" href="index.html" aria-label="Nocturne Ink home"><span class="brand-mark">N</span><span class="brand-copy"><strong>NOCTURNE</strong><small>INK · CHENNAI</small></span></a>
+    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+    <nav class="nav" aria-label="Main navigation"><a href="#studio">Studio</a><a href="artists.html">Artists</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a><a class="nav-cta" href="booking.html">Book a session</a></nav>
   </header>
 
-  <div class="mobile-menu">
-    <a href="#studio">STUDIO</a>
-    <a href="#artists">ARTISTS</a>
-    <a href="#styles">STYLES</a>
-    <a href="#gallery">GALLERY</a>
-    <a href="#aftercare">AFTERCARE</a>
-    <a href="#contact">CONTACT</a>
-    <a class="btn btn-primary" href="#booking-form">BOOK APPOINTMENT</a>
-  </div>
-
   <main>
-    <section class="hero" id="home">
-      <div class="hero-content">
-        <div class="eyebrow"><i></i> PREMIUM TATTOO STUDIO · CHENNAI</div>
-        <h1>YOUR SKIN.<br>YOUR STORY.<br>OUR ART.</h1>
-        <p>Custom tattooing shaped by individuality, precision, and uncompromising artistry.</p>
-        <div class="hero-actions">
-          <a href="#booking-form" class="btn btn-primary">BOOK APPOINTMENT</a>
-          <a href="#gallery" class="btn btn-outline">EXPLORE OUR WORK</a>
-        </div>
-      </div>
-      <div class="hero-visual placeholder">
-        <div class="red-glow"></div>
-        <span>ARTIST / TATTOO HERO VISUAL</span>
-      </div>
-      <div class="hero-footer">
-        <span>SCROLL TO DISCOVER ↓</span>
-        <strong>01</strong>
-      </div>
+    <section class="hero">
+      <div class="hero-media" aria-hidden="true"></div><div class="hero-overlay"></div>
+      <div class="hero-content reveal"><p class="eyebrow">Chennai · India</p><h1>WEAR YOUR<br><em>STORY.</em></h1><p class="hero-copy">Custom tattooing for people who want art with presence. Designed around you, built to last.</p><div class="hero-actions"><a class="btn btn-primary" href="booking.html">Start your tattoo</a><a class="text-link" href="gallery.html">Explore our work <span>↗</span></a></div></div>
+      <div class="hero-meta"><span>Custom · Original · Personal</span><span class="scroll">Scroll ↓</span></div>
     </section>
 
-    <section class="section split" id="studio">
-      <div>
-        <div class="section-label"><b>02</b> THE STUDIO</div>
-        <h2>NOT JUST A TATTOO.<br>A PIECE OF YOU.</h2>
-        <p>Nocturne Ink is a contemporary tattoo atelier built around individual expression, technical precision, and timeless artwork.</p>
-        <p>Whether it is your first tattoo or the next chapter in a growing collection, our artists turn ideas into pieces designed specifically for you.</p>
-        <a class="text-link" href="#contact">DISCOVER THE STUDIO →</a>
-      </div>
-      <div class="studio-visual photo-card studio-shot"><span>STUDIO VISUAL</span></div>
-    </section>
+    <section class="proof-strip" aria-label="Studio highlights"><div><strong>6</strong><span>Signature styles</span></div><div><strong>3</strong><span>Specialist artists</span></div><div><strong>1:1</strong><span>Consultation first</span></div><div><strong>100%</strong><span>Custom concepts</span></div></section>
 
-    <section class="section alt" id="artists">
-      <div class="section-head">
-        <div>
-          <div class="section-label"><b>03</b> RESIDENT ARTISTS</div>
-          <h2>MEET THE HANDS<br>BEHIND THE INK.</h2>
-        </div>
-        <p>Demo profiles show clients how their own artists, specialties, portfolios, and booking links can live inside the site.</p>
-      </div>
+    <section class="marquee" aria-label="Tattoo styles"><div class="marquee-track"><span>REALISM</span><b>✦</b><span>BLACKWORK</span><b>✦</b><span>FINE-LINE</span><b>✦</b><span>JAPANESE</span><b>✦</b><span>TRADITIONAL</span><b>✦</b><span>GEOMETRIC</span><b>✦</b><span>REALISM</span><b>✦</b><span>BLACKWORK</span><b>✦</b><span>FINE-LINE</span><b>✦</b><span>JAPANESE</span><b>✦</b><span>TRADITIONAL</span><b>✦</b><span>GEOMETRIC</span><b>✦</b></div></section>
 
-      <div class="artist-grid">
-        <article class="artist-card"><div class="artist-img photo-card artist-1"></div><h3>ARJUN RAO</h3><small>BLACK & GREY REALISM</small><a href="#booking-form">BOOK WITH ARJUN →</a></article>
-        <article class="artist-card"><div class="artist-img photo-card artist-2"></div><h3>MAYA SEN</h3><small>FINE LINE</small><a href="#booking-form">BOOK WITH MAYA →</a></article>
-        <article class="artist-card"><div class="artist-img photo-card artist-3"></div><h3>ROHAN V</h3><small>JAPANESE</small><a href="#booking-form">BOOK WITH ROHAN →</a></article>
-        <article class="artist-card"><div class="artist-img photo-card artist-4"></div><h3>KIARA SHAH</h3><small>BLACKWORK</small><a href="#booking-form">BOOK WITH KIARA →</a></article>
-        <article class="artist-card"><div class="artist-img photo-card artist-2"></div><h3>DEV RAMAN</h3><small>TRADITIONAL</small><a href="#booking-form">BOOK WITH DEV →</a></article>
-        <article class="artist-card"><div class="artist-img photo-card artist-3"></div><h3>AIDEN JOSEPH</h3><small>GEOMETRIC</small><a href="#booking-form">BOOK WITH AIDEN →</a></article>
-      </div>
-    </section>
+    <section class="section split" id="studio"><div class="section-label reveal">01 / THE STUDIO</div><div class="split-content reveal"><h2>Not just ink.<br><em>A mark that means something.</em></h2><div class="split-copy"><p>Nocturne Ink is a fictional premium tattoo studio concept built for Chennai. Our approach combines meticulous craft, bold visual identity and a consultation-first experience.</p><p>Every piece starts with your story — then we shape it into artwork made specifically for your body.</p><a class="text-link" href="booking.html">Plan your piece <span>↗</span></a></div></div></section>
 
-    <section class="section" id="styles">
-      <div class="section-head">
-        <div>
-          <div class="section-label"><b>04</b> SPECIALITIES</div>
-          <h2>EVERY STYLE.<br>YOUR IDENTITY.</h2>
-        </div>
-        <p>A modular style system that lets each studio showcase exactly what their artists specialize in.</p>
-      </div>
+    <section class="styles-grid" id="styles"><article class="style-card style-1 reveal"><span>01</span><div><h3>Realism</h3><p>Portraits, wildlife and high-detail black & grey.</p></div></article><article class="style-card style-2 reveal"><span>02</span><div><h3>Blackwork</h3><p>Graphic contrast, dark ornamental forms and bold silhouettes.</p></div></article><article class="style-card style-3 reveal"><span>03</span><div><h3>Fine-line</h3><p>Delicate, precise and minimal designs with clean detail.</p></div></article><article class="style-card style-4 reveal"><span>04</span><div><h3>Japanese</h3><p>Large-scale compositions inspired by traditional iconography.</p></div></article><article class="style-card style-5 reveal"><span>05</span><div><h3>Traditional</h3><p>Strong lines, timeless motifs and unmistakable character.</p></div></article><article class="style-card style-6 reveal"><span>06</span><div><h3>Geometric</h3><p>Symmetry, sacred geometry and body-aware pattern work.</p></div></article></section>
 
-      <div class="style-grid">
-        <a class="style-card" href="#"><span>01</span><h3>REALISM</h3><small>EXPLORE STYLE →</small></a>
-        <a class="style-card" href="#"><span>02</span><h3>BLACKWORK</h3><small>EXPLORE STYLE →</small></a>
-        <a class="style-card" href="#"><span>03</span><h3>FINE LINE</h3><small>EXPLORE STYLE →</small></a>
-        <a class="style-card" href="#"><span>04</span><h3>JAPANESE</h3><small>EXPLORE STYLE →</small></a>
-        <a class="style-card" href="#"><span>05</span><h3>TRADITIONAL</h3><small>EXPLORE STYLE →</small></a>
-        <a class="style-card" href="#"><span>06</span><h3>GEOMETRIC</h3><small>EXPLORE STYLE →</small></a>
-      </div>
-    </section>
+    <section class="section artists" id="artists"><div class="section-head reveal"><div class="section-label">02 / ARTISTS</div><h2>Different hands.<br><em>One standard.</em></h2></div><div class="artist-grid"><a class="artist-card reveal" href="artists.html#arjun"><div class="artist-img artist-a"></div><div class="artist-info"><div><h3>Arjun Vale</h3><p>Realism · Black & Grey</p></div><span>↗</span></div></a><a class="artist-card reveal" href="artists.html#mira"><div class="artist-img artist-b"></div><div class="artist-info"><div><h3>Mira Sen</h3><p>Fine-line · Ornamental</p></div><span>↗</span></div></a><a class="artist-card reveal" href="artists.html#ren"><div class="artist-img artist-c"></div><div class="artist-info"><div><h3>Ren Ishaan</h3><p>Japanese · Blackwork</p></div><span>↗</span></div></a></div><div class="section-more reveal"><a class="text-link" href="artists.html">Meet every artist <span>↗</span></a></div></section>
 
-    <section class="section alt" id="gallery">
-      <div class="section-head">
-        <div>
-          <div class="section-label"><b>05</b> SELECTED WORK</div>
-          <h2>THE WORK<br>SPEAKS FIRST.</h2>
-        </div>
-        <p>A flexible gallery system for finished tattoos, healed work, close-ups, and artist-specific portfolios.</p>
-      </div>
+    <section class="work" id="work"><div class="work-intro reveal"><div class="section-label">03 / SELECTED WORK</div><h2>Made to be<br><em>remembered.</em></h2></div><a class="work-grid" href="gallery.html" aria-label="View tattoo gallery"><div class="work-img work-a reveal"></div><div class="work-img work-b reveal"></div><div class="work-img work-c reveal"></div><div class="work-img work-d reveal"></div></a><div class="section-more work-more reveal"><a class="text-link" href="gallery.html">View full gallery <span>↗</span></a></div></section>
 
-      <div class="filters">
-        <button class="active">ALL</button><button>REALISM</button><button>BLACKWORK</button><button>FINE LINE</button><button>JAPANESE</button><button>TRADITIONAL</button>
-      </div>
+    <section class="reviews section"><div class="section-head reveal"><div class="section-label">04 / CLIENT WORDS</div><h2>The art stays.<br><em>So does the experience.</em></h2></div><div class="review-grid"><article class="review-card reveal"><div class="stars">★★★★★</div><blockquote>“I came in with a rough idea and left with something that actually felt like mine. The consultation made all the difference.”</blockquote><footer><strong>Aanya R.</strong><span>Fine-line · Chennai</span></footer></article><article class="review-card reveal"><div class="stars">★★★★★</div><blockquote>“The design was adjusted around my arm instead of forcing the reference onto it. That attention to placement was exactly what I wanted.”</blockquote><footer><strong>Vikram K.</strong><span>Blackwork · Chennai</span></footer></article><article class="review-card reveal"><div class="stars">★★★★★</div><blockquote>“Clean studio, calm process, no rushing. Every step was explained before we started.”</blockquote><footer><strong>Rhea M.</strong><span>Realism · Chennai</span></footer></article></div><p class="demo-disclaimer reveal">Sample testimonials for this demo concept. Replace with verified client reviews in production.</p></section>
 
-      <div class="gallery-grid">
-        <div class="gallery-item tall photo-card work-1"><span>LION + ROSES</span></div>
-        <div class="gallery-item photo-card work-2"><span>KOI WAVE SLEEVE</span></div>
-        <div class="gallery-item photo-card work-3"><span>FINE LINE BOTANICAL</span></div>
-        <div class="gallery-item small photo-card work-4"><span>BLACKWORK SHOULDER</span></div>
-        <div class="gallery-item small photo-card work-5"><span>TRADITIONAL DAGGER</span></div>
-        <div class="gallery-item small photo-card work-6"><span>GEOMETRIC LIONESS</span></div>
-      </div>
-      <a class="text-link" href="#booking-form">BOOK A CONSULTATION →</a>
-    </section>
+    <section class="process section"><div class="section-head reveal"><div class="section-label">05 / PROCESS</div><h2>From thought<br><em>to skin.</em></h2></div><div class="process-list"><article class="reveal"><span>01</span><h3>Tell us the idea</h3><p>Share references, placement, approximate size and what you want the piece to feel like.</p></article><article class="reveal"><span>02</span><h3>Artist consultation</h3><p>We pair the concept with the right artist and refine direction, scale and composition.</p></article><article class="reveal"><span>03</span><h3>Deposit & design</h3><p>Once scope is agreed, a deposit secures your appointment and the custom design process begins.</p></article><article class="reveal"><span>04</span><h3>Tattoo & aftercare</h3><p>Your piece is tattooed in a focused session, followed by clear healing guidance.</p></article></div></section>
 
-    <section class="section" id="process">
-      <div class="section-head">
-        <div>
-          <div class="section-label"><b>06</b> THE PROCESS</div>
-          <h2>FROM IDEA<br>TO INK.</h2>
-        </div>
-        <p>A clear four-step journey makes the booking experience easier for first-time and returning clients.</p>
-      </div>
-      <div class="process-grid">
-        <article><b>01</b><h3>CONSULTATION</h3><p>Tell us your idea, placement, preferred style, and inspiration.</p></article>
-        <article><b>02</b><h3>DESIGN</h3><p>Your artist develops an original piece tailored around your vision.</p></article>
-        <article><b>03</b><h3>SESSION</h3><p>Your artwork comes to life in a professional studio environment.</p></article>
-        <article id="aftercare"><b>04</b><h3>AFTERCARE</h3><p>We guide you through proper healing, protection, and long-term care.</p></article>
-      </div>
-    </section>
+    <section class="deposit-band"><div class="deposit-copy reveal"><p class="eyebrow">Booking clarity</p><h2>Your appointment is reserved<br><em>only after a deposit.</em></h2></div><div class="deposit-points reveal"><p><span>01</span> Consultation first — no pressure to book.</p><p><span>02</span> Deposit amount depends on scope and session length.</p><p><span>03</span> Final quote is confirmed before the tattoo appointment.</p><a class="text-link" href="booking.html">See booking form <span>↗</span></a></div></section>
 
-    <section class="section alt reviews">
-      <div class="section-label"><b>07</b> CLIENT STORIES</div>
-      <h2>TRUSTED BY CLIENTS.<br>REMEMBERED IN INK.</h2>
-      <div class="review-grid">
-        <blockquote><div>★★★★★</div><p>“Absolutely loved the experience. Clean studio, amazing attention to detail, and the artist turned my idea into something better than I imagined.”</p><footer>PRIYA K. · BLACK & GREY</footer></blockquote>
-        <blockquote><div>★★★★★</div><p>“From consultation to aftercare, everything felt premium and professional. Easily one of the best tattoo experiences I’ve had.”</p><footer>RAHUL S. · JAPANESE</footer></blockquote>
-        <blockquote><div>★★★★★</div><p>“The studio atmosphere, the artist, and the final tattoo were all incredible. I’ll definitely be coming back for my next piece.”</p><footer>ANANYA M. · FINE LINE</footer></blockquote>
-      </div>
-    </section>
+    <section class="faq section"><div class="section-head reveal"><div class="section-label">06 / FAQ</div><h2>Before you<br><em>book.</em></h2></div><div class="faq-list reveal"><details><summary>How much does a tattoo cost?<span>+</span></summary><p>Pricing depends on size, placement, detail, style and artist time. Submit a consultation brief first and the studio can estimate the project before booking.</p></details><details><summary>Can I bring a Pinterest or Instagram reference?<span>+</span></summary><p>Yes. References are useful for direction, but the final design should be adapted into an original piece built for your body and anatomy.</p></details><details><summary>Do I need to know which artist I want?<span>+</span></summary><p>No. If you are unsure, describe the piece and the studio can recommend the artist whose style best fits it.</p></details><details><summary>Can I book through WhatsApp?<span>+</span></summary><p>Yes for the production version. This demo uses placeholder contact details until it is adapted for a real studio.</p></details><details><summary>What should I do before my appointment?<span>+</span></summary><p>Sleep well, hydrate, eat beforehand and avoid arriving intoxicated. Your artist should also give you any placement-specific preparation instructions.</p></details></div></section>
 
-    <section class="section instagram">
-      <div class="section-head">
-        <div>
-          <div class="section-label"><b>08</b> FROM THE STUDIO</div>
-          <h2>FOLLOW<br>THE NEEDLE.</h2>
-        </div>
-        <p>Instagram becomes a second portfolio and an easy path back into booking.</p>
-      </div>
-      <div class="insta-grid">
-        <div class="photo-card work-1"></div><div class="photo-card work-2"></div><div class="photo-card work-3"></div>
-        <div class="photo-card work-4"></div><div class="photo-card work-5"></div><div class="photo-card work-6"></div>
-      </div>
-      <a class="text-link" href="#booking-form">FOLLOW @NOCTURNEINK ↗</a>
-    </section>
-
-    <section class="booking" id="booking">
-      <div class="booking-overlay"></div>
-      <div class="booking-content">
-        <div class="section-label"><b>09</b> READY WHEN YOU ARE</div>
-        <h2>LET’S CREATE<br>SOMETHING PERMANENT.</h2>
-        <p>Whether it’s your first tattoo or your next major piece, our artists are ready to bring your idea to life.</p>
-        <div class="hero-actions">
-          <a href="#booking-form" class="btn btn-primary">BOOK APPOINTMENT</a>
-          <a href="#booking-form" class="btn btn-outline">BOOK CONSULTATION</a>
-        </div>
-        <small>WHATSAPP · INSTAGRAM · EMAIL · PHONE</small>
-      </div>
-    </section>
-  
-
-    <section class="section alt booking-form-section" id="booking-form">
-      <div class="section-head compact-head">
-        <div>
-          <div class="section-label"><b>10</b> BOOKING FORM</div>
-          <h2>START YOUR<br>TATTOO CONSULTATION.</h2>
-        </div>
-        <p>Use this form to collect complete tattoo enquiries. For a real client website, the same form can route leads to email, WhatsApp, or a CRM.</p>
-      </div>
-      <div class="booking-grid">
-        <div class="booking-panel">
-          <form id="consultation-form" class="consultation-form">
-            <div class="form-grid two-up">
-              <label><span>Full Name</span><input type="text" name="name" required placeholder="Your full name"></label>
-              <label><span>Phone / WhatsApp</span><input type="tel" name="phone" required placeholder="+91 XXXXX XXXXX"></label>
-            </div>
-            <div class="form-grid two-up">
-              <label><span>Email Address</span><input type="email" name="email" required placeholder="you@example.com"></label>
-              <label><span>Preferred Artist</span>
-                <select name="artist">
-                  <option value="No preference">No preference</option>
-                  <option>Arjun Rao</option><option>Maya Sen</option><option>Rohan V</option>
-                  <option>Kiara Shah</option><option>Dev Raman</option><option>Aiden Joseph</option>
-                </select>
-              </label>
-            </div>
-            <div class="form-grid three-up">
-              <label><span>Tattoo Style</span>
-                <select name="style"><option>Realism</option><option>Blackwork</option><option>Fine Line</option><option>Japanese</option><option>Traditional</option><option>Geometric</option></select>
-              </label>
-              <label><span>Placement</span><input type="text" name="placement" placeholder="Forearm, sleeve, back..."></label>
-              <label><span>Approx. Size</span><input type="text" name="size" placeholder="Small / Medium / Large"></label>
-            </div>
-            <div class="form-grid three-up">
-              <label><span>Ink Preference</span>
-                <select name="ink"><option>Black & Grey</option><option>Colour</option><option>Not sure yet</option></select>
-              </label>
-              <label><span>Preferred Date</span><input type="date" name="date"></label>
-              <label><span>Budget Range</span>
-                <select name="budget"><option>₹1,500 – ₹5,000</option><option>₹5,000 – ₹10,000</option><option>₹10,000 – ₹20,000</option><option>₹20,000+</option><option>Need consultation first</option></select>
-              </label>
-            </div>
-            <label><span>Tattoo Idea / Description</span><textarea name="idea" rows="6" required placeholder="Tell us about the design, references, meaning, and anything the artist should know."></textarea></label>
-            <div class="form-grid two-up submit-row">
-              <button type="submit" class="btn btn-primary">SEND CONSULTATION</button>
-              <a class="btn btn-outline direct-contact" id="direct-whatsapp" href="https://wa.me/919999999999" target="_blank" rel="noopener">WHATSAPP DIRECTLY</a>
-            </div>
-          </form>
-        </div>
-        <aside class="booking-side">
-          <div class="info-card">
-            <h3>WHAT HAPPENS NEXT</h3>
-            <ol>
-              <li>We review your concept and references.</li>
-              <li>We suggest the best artist and session type.</li>
-              <li>We contact you to confirm pricing and appointment details.</li>
-            </ol>
-          </div>
-          <div class="info-card success-card hidden" id="success-card">
-            <h3>CONSULTATION READY</h3>
-            <p>Your enquiry summary is ready. In a live client website, this would be sent directly to the studio.</p>
-            <div id="success-summary"></div>
-            <div class="success-actions">
-              <a id="whatsapp-link" class="btn btn-primary" href="#" target="_blank" rel="noopener">SEND VIA WHATSAPP</a>
-              <a id="email-link" class="btn btn-outline" href="#">SEND VIA EMAIL</a>
-            </div>
-          </div>
-          <div class="info-card small-contact">
-            <h3>DIRECT CONTACT</h3>
-            <p><strong>Phone:</strong> +91 XXXXX XXXXX</p>
-            <p><strong>Email:</strong> hello@nocturneink.com</p>
-            <p><strong>Instagram:</strong> @nocturneink</p>
-          </div>
-        </aside>
-      </div>
-    </section>
+    <section class="booking" id="booking"><div class="booking-bg"></div><div class="booking-overlay"></div><div class="booking-content reveal"><p class="eyebrow">Ready when you are</p><h2>YOUR NEXT<br><em>PIECE STARTS HERE.</em></h2><p>Send us the idea. We’ll help you take it from reference to original artwork.</p><div class="booking-actions"><a class="btn btn-primary" href="booking.html">Book consultation</a><a class="btn btn-ghost" href="contact.html">Contact studio</a></div></div></section>
   </main>
 
-
-  <footer class="footer" id="contact">
-    <div class="footer-brand">
-      <div class="brand">NOCTURNE <span>INK</span></div>
-      <p>Tattoo Atelier · Chennai</p>
-    </div>
-    <div><h4>EXPLORE</h4><a href="#studio">Studio</a><a href="#artists">Artists</a><a href="#gallery">Gallery</a><a href="#aftercare">Aftercare</a></div>
-    <div><h4>CONTACT</h4><span>+91 XXXXX XXXXX</span><span>hello@nocturneink.com</span><span>Chennai, Tamil Nadu</span></div>
-    <div><h4>HOURS</h4><span>Mon–Sun</span><span>11:00 AM–10:00 PM</span><span>Instagram · Facebook · WhatsApp</span></div>
-    <div class="footer-bottom"><span>© 2026 NOCTURNE INK</span><span>DEMO WEBSITE</span></div>
-  </footer>
-
+  <footer class="footer"><div class="footer-brand"><span class="brand-mark">N</span><div><strong>NOCTURNE INK</strong><p>Premium tattoo studio concept · Chennai</p></div></div><div class="footer-links"><a href="index.html#studio">Studio</a><a href="artists.html">Artists</a><a href="gallery.html">Gallery</a><a href="booking.html">Booking</a><a href="contact.html">Contact</a></div><div class="footer-bottom"><span>© 2026 Nocturne Ink. Demo concept.</span><span>Instagram · WhatsApp · Chennai</span></div></footer>
   <script src="script.js"></script>
 </body>
 </html>
