@@ -1,24 +1,3 @@
-const styleFiles = ['phase3.css', 'phase4.css', 'phase6.css', 'final-polish.css'];
-styleFiles.forEach(href => {
-  if (!document.querySelector(`link[href="${href}"]`)) {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = href;
-    document.head.appendChild(link);
-  }
-});
-
-const favicon = document.createElement('link');
-favicon.rel = 'icon';
-favicon.type = 'image/svg+xml';
-favicon.href = 'favicon.svg';
-document.head.appendChild(favicon);
-
-const manifest = document.createElement('link');
-manifest.rel = 'manifest';
-manifest.href = 'site.webmanifest';
-document.head.appendChild(manifest);
-
 if (!document.querySelector('.skip-link')) {
   const skipLink = document.createElement('a');
   skipLink.className = 'skip-link';
@@ -61,16 +40,20 @@ const updateHeader = () => header?.classList.toggle('scrolled', window.scrollY >
 window.addEventListener('scroll', updateHeader, { passive: true });
 updateHeader();
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12 });
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+const revealEls = [...document.querySelectorAll('.reveal')];
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+} else {
+  revealEls.forEach(el => el.classList.add('visible'));
+}
 
 window.addEventListener('load', () => {
   document.querySelectorAll('.hero .reveal, .page-hero .reveal').forEach(el => el.classList.add('visible'));
@@ -253,33 +236,40 @@ function applySiteConfig() {
   ensureMeta('og:site_name', config.brandName, true);
   ensureMeta('twitter:card', 'summary_large_image');
 
-  const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'TattooParlor',
-    name: config.brandName,
-    url: config.siteUrl,
-    email: config.demoMode ? undefined : config.email,
-    telephone: config.demoMode || !config.whatsappNumber ? undefined : `+${config.whatsappNumber}`,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: config.studioAddress,
-      addressLocality: config.city,
-      addressCountry: config.country
-    },
-    sameAs: config.instagramUrl && config.instagramUrl !== '#' ? [config.instagramUrl] : []
-  };
-
-  let schemaTag = document.querySelector('#studio-schema');
-  if (!schemaTag) {
-    schemaTag = document.createElement('script');
-    schemaTag.id = 'studio-schema';
-    schemaTag.type = 'application/ld+json';
-    document.head.appendChild(schemaTag);
+  if (config.schemaEnabled && !config.demoMode) {
+    const schema = {
+      '@context': 'https://schema.org',
+      '@type': 'TattooParlor',
+      name: config.brandName,
+      url: config.siteUrl,
+      email: config.email,
+      telephone: config.whatsappNumber ? `+${config.whatsappNumber}` : undefined,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: config.studioAddress,
+        addressLocality: config.city,
+        addressCountry: config.country
+      },
+      sameAs: config.instagramUrl && config.instagramUrl !== '#' ? [config.instagramUrl] : []
+    };
+    let schemaTag = document.querySelector('#studio-schema');
+    if (!schemaTag) {
+      schemaTag = document.createElement('script');
+      schemaTag.id = 'studio-schema';
+      schemaTag.type = 'application/ld+json';
+      document.head.appendChild(schemaTag);
+    }
+    schemaTag.textContent = JSON.stringify(schema);
+  } else {
+    document.querySelector('#studio-schema')?.remove();
   }
-  schemaTag.textContent = JSON.stringify(schema);
 }
 
-const configScript = document.createElement('script');
-configScript.src = 'site-config.js';
-configScript.onload = applySiteConfig;
-document.head.appendChild(configScript);
+if (window.NOCTURNE_CONFIG) {
+  applySiteConfig();
+} else if (!document.querySelector('script[src="site-config.js"]')) {
+  const configScript = document.createElement('script');
+  configScript.src = 'site-config.js';
+  configScript.onload = applySiteConfig;
+  document.head.appendChild(configScript);
+}
