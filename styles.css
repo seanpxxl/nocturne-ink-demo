@@ -15,15 +15,22 @@
 
 /* Mobile hero focal-point fix */
 @media(max-width:900px){
-  .hero-media{
-    background-position:78% center;
-    background-size:cover;
-  }
   .hero{
     min-height:900px;
   }
+  .hero-media{
+    background-size:auto 74%;
+    background-position:right bottom;
+    background-repeat:no-repeat;
+    background-color:#080808;
+  }
+  .hero-overlay{
+    background:
+      linear-gradient(90deg,rgba(4,4,4,.97) 0%,rgba(4,4,4,.90) 42%,rgba(4,4,4,.34) 72%,rgba(4,4,4,.06) 100%),
+      linear-gradient(to top,rgba(4,4,4,.28),transparent 48%);
+  }
   .hero-content{
-    padding-bottom:280px;
+    padding-bottom:42vh;
   }
 }
 @media(max-width:640px){
@@ -31,18 +38,20 @@
     min-height:100svh;
   }
   .hero-media{
-    background-position:82% 24%;
+    background-size:auto 70%;
+    background-position:right bottom;
   }
   .hero-content{
-    padding-bottom:265px;
+    padding-bottom:40vh;
   }
 }
 @media(max-width:430px){
   .hero-media{
-    background-position:86% 26%;
+    background-size:auto 68%;
+    background-position:right bottom;
   }
   .hero-content{
-    padding-bottom:245px;
+    padding-bottom:38vh;
   }
   .hero h1{
     font-size:46px;
