@@ -1,65 +1,285 @@
-const menuBtn = document.querySelector('.menu-btn');
-const menu = document.querySelector('.mobile-menu');
+const styleFiles = ['phase3.css', 'phase4.css', 'phase6.css', 'final-polish.css'];
+styleFiles.forEach(href => {
+  if (!document.querySelector(`link[href="${href}"]`)) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    document.head.appendChild(link);
+  }
+});
 
-if (menuBtn && menu) {
-  menuBtn.addEventListener('click', () => {
-    const open = menu.classList.toggle('open');
-    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+const favicon = document.createElement('link');
+favicon.rel = 'icon';
+favicon.type = 'image/svg+xml';
+favicon.href = 'favicon.svg';
+document.head.appendChild(favicon);
+
+const manifest = document.createElement('link');
+manifest.rel = 'manifest';
+manifest.href = 'site.webmanifest';
+document.head.appendChild(manifest);
+
+if (!document.querySelector('.skip-link')) {
+  const skipLink = document.createElement('a');
+  skipLink.className = 'skip-link';
+  skipLink.href = '#main-content';
+  skipLink.textContent = 'Skip to content';
+  document.body.prepend(skipLink);
+  document.querySelector('main')?.setAttribute('id', 'main-content');
+}
+
+const menuButton = document.querySelector('.menu-toggle');
+const nav = document.querySelector('.nav');
+if (nav && !nav.getAttribute('aria-label')) nav.setAttribute('aria-label', 'Main navigation');
+
+menuButton?.addEventListener('click', () => {
+  const open = nav?.classList.toggle('open') || false;
+  menuButton.setAttribute('aria-expanded', String(open));
+  menuButton.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  document.body.classList.toggle('menu-open', open);
+});
+
+document.querySelectorAll('.nav a').forEach(link => {
+  link.addEventListener('click', () => {
+    nav?.classList.remove('open');
+    document.body.classList.remove('menu-open');
+    menuButton?.setAttribute('aria-expanded', 'false');
+    menuButton?.setAttribute('aria-label', 'Open menu');
   });
+});
 
-  document.querySelectorAll('.mobile-menu a').forEach(a => {
-    a.addEventListener('click', () => {
-      menu.classList.remove('open');
-      menuBtn.setAttribute('aria-expanded', 'false');
+const pageName = location.pathname.split('/').pop() || 'index.html';
+document.querySelectorAll('.nav a').forEach(link => {
+  const href = link.getAttribute('href') || '';
+  const hrefPage = href.split('#')[0] || 'index.html';
+  if ((pageName === '' || pageName === 'index.html') && (href === '#studio' || hrefPage === 'index.html')) return;
+  if (hrefPage === pageName) link.setAttribute('aria-current', 'page');
+});
+
+const header = document.querySelector('.site-header');
+const updateHeader = () => header?.classList.toggle('scrolled', window.scrollY > 24);
+window.addEventListener('scroll', updateHeader, { passive: true });
+updateHeader();
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+window.addEventListener('load', () => {
+  document.querySelectorAll('.hero .reveal, .page-hero .reveal').forEach(el => el.classList.add('visible'));
+});
+
+if (!document.querySelector('.floating-whatsapp')) {
+  const whatsapp = document.createElement('a');
+  whatsapp.className = 'floating-whatsapp';
+  whatsapp.href = 'https://wa.me/910000000000';
+  whatsapp.target = '_blank';
+  whatsapp.rel = 'noopener noreferrer';
+  whatsapp.setAttribute('aria-label', 'Chat with the studio on WhatsApp');
+  whatsapp.innerHTML = '<span class="wa-dot"></span><span class="wa-label">WhatsApp studio</span>';
+  document.body.appendChild(whatsapp);
+}
+
+if (!document.querySelector('.noise-overlay')) {
+  const noise = document.createElement('div');
+  noise.className = 'noise-overlay';
+  noise.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(noise);
+}
+
+if (!document.querySelector('.mobile-bookbar')) {
+  const bar = document.createElement('div');
+  bar.className = 'mobile-bookbar';
+  bar.innerHTML = '<a class="secondary" href="gallery.html">View work</a><a class="primary" href="booking.html">Book consultation</a>';
+  document.body.appendChild(bar);
+}
+
+let toastTimer;
+function showDemoToast(message) {
+  let toast = document.querySelector('.demo-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.className = 'demo-toast';
+    toast.setAttribute('role', 'status');
+    toast.setAttribute('aria-live', 'polite');
+    document.body.appendChild(toast);
+  }
+  toast.innerHTML = `<strong>Demo preview:</strong> ${message}`;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 4200);
+}
+
+const galleryTiles = [...document.querySelectorAll('.gallery-tile')];
+if (galleryTiles.length) {
+  const lightbox = document.createElement('div');
+  lightbox.className = 'lightbox';
+  lightbox.setAttribute('aria-hidden', 'true');
+  lightbox.setAttribute('role', 'dialog');
+  lightbox.setAttribute('aria-modal', 'true');
+  lightbox.setAttribute('aria-label', 'Tattoo gallery preview');
+  lightbox.innerHTML = '<button class="lightbox-close" aria-label="Close gallery preview">×</button><div class="lightbox-panel"><div class="lightbox-image"></div><div class="lightbox-copy"><span></span><h3></h3><p>Demo portfolio image. Production versions should use client-owned tattoo photography.</p></div></div>';
+  document.body.appendChild(lightbox);
+
+  const imageEl = lightbox.querySelector('.lightbox-image');
+  const typeEl = lightbox.querySelector('.lightbox-copy span');
+  const titleEl = lightbox.querySelector('.lightbox-copy h3');
+  let lastFocusedTile = null;
+
+  const close = () => {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    lastFocusedTile?.focus();
+  };
+
+  galleryTiles.forEach(tile => {
+    tile.setAttribute('tabindex', '0');
+    tile.setAttribute('role', 'button');
+    tile.setAttribute('aria-label', `Open ${tile.querySelector('figcaption strong')?.textContent || 'tattoo'} preview`);
+    const open = () => {
+      lastFocusedTile = tile;
+      const img = tile.querySelector('.gallery-img');
+      const caption = tile.querySelector('figcaption');
+      if (imageEl && img) imageEl.style.backgroundImage = getComputedStyle(img).backgroundImage;
+      if (typeEl) typeEl.textContent = caption?.querySelector('span')?.textContent || 'Selected work';
+      if (titleEl) titleEl.textContent = caption?.querySelector('strong')?.textContent || 'Tattoo study';
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      lightbox.querySelector('.lightbox-close')?.focus();
+    };
+    tile.addEventListener('click', open);
+    tile.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        open();
+      }
     });
   });
-}
 
-const form = document.getElementById('consultation-form');
-const successCard = document.getElementById('success-card');
-const successSummary = document.getElementById('success-summary');
-const whatsappLink = document.getElementById('whatsapp-link');
-const emailLink = document.getElementById('email-link');
-
-if (form) {
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const data = new FormData(form);
-    const payload = Object.fromEntries(data.entries());
-
-    const summary = `
-      <p><strong>Name:</strong> ${payload.name || '-'}<br>
-      <strong>Phone:</strong> ${payload.phone || '-'}<br>
-      <strong>Email:</strong> ${payload.email || '-'}<br>
-      <strong>Artist:</strong> ${payload.artist || '-'}<br>
-      <strong>Style:</strong> ${payload.style || '-'}<br>
-      <strong>Placement:</strong> ${payload.placement || '-'}<br>
-      <strong>Size:</strong> ${payload.size || '-'}<br>
-      <strong>Ink:</strong> ${payload.ink || '-'}<br>
-      <strong>Date:</strong> ${payload.date || '-'}<br>
-      <strong>Budget:</strong> ${payload.budget || '-'}<br>
-      <strong>Idea:</strong> ${payload.idea || '-'}</p>
-    `;
-    successSummary.innerHTML = summary;
-
-    const message = `New tattoo consultation%0A%0AName: ${encodeURIComponent(payload.name || '')}%0APhone: ${encodeURIComponent(payload.phone || '')}%0AEmail: ${encodeURIComponent(payload.email || '')}%0APreferred artist: ${encodeURIComponent(payload.artist || '')}%0AStyle: ${encodeURIComponent(payload.style || '')}%0APlacement: ${encodeURIComponent(payload.placement || '')}%0ASize: ${encodeURIComponent(payload.size || '')}%0AInk: ${encodeURIComponent(payload.ink || '')}%0APreferred date: ${encodeURIComponent(payload.date || '')}%0ABudget: ${encodeURIComponent(payload.budget || '')}%0AIdea: ${encodeURIComponent(payload.idea || '')}`;
-    whatsappLink.href = `https://wa.me/919999999999?text=${message}`;
-
-    const subject = encodeURIComponent(`New Tattoo Consultation — ${payload.name || 'Client'}`);
-    const body = encodeURIComponent(`Name: ${payload.name || ''}
-Phone: ${payload.phone || ''}
-Email: ${payload.email || ''}
-Preferred artist: ${payload.artist || ''}
-Style: ${payload.style || ''}
-Placement: ${payload.placement || ''}
-Size: ${payload.size || ''}
-Ink: ${payload.ink || ''}
-Preferred date: ${payload.date || ''}
-Budget: ${payload.budget || ''}
-Idea: ${payload.idea || ''}`);
-    emailLink.href = `mailto:hello@nocturneink.com?subject=${subject}&body=${body}`;
-
-    successCard.classList.remove('hidden');
-    successCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  lightbox.querySelector('.lightbox-close')?.addEventListener('click', close);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) close(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && lightbox.classList.contains('open')) close();
   });
 }
+
+function ensureMeta(name, content, property = false) {
+  const selector = property ? `meta[property="${name}"]` : `meta[name="${name}"]`;
+  let tag = document.querySelector(selector);
+  if (!tag) {
+    tag = document.createElement('meta');
+    tag.setAttribute(property ? 'property' : 'name', name);
+    document.head.appendChild(tag);
+  }
+  tag.setAttribute('content', content);
+}
+
+function applySiteConfig() {
+  const config = window.NOCTURNE_CONFIG;
+  if (!config) return;
+
+  const waText = encodeURIComponent(config.whatsappMessage || 'Hi, I want to book a tattoo consultation.');
+  const waUrl = `https://wa.me/${config.whatsappNumber}?text=${waText}`;
+
+  document.querySelectorAll('a[href*="wa.me/"]').forEach(link => {
+    link.href = waUrl;
+    link.rel = 'noopener noreferrer';
+    if (config.demoMode) link.dataset.demoContact = 'true';
+  });
+
+  const floatingWhatsapp = document.querySelector('.floating-whatsapp');
+  if (floatingWhatsapp) {
+    floatingWhatsapp.href = waUrl;
+    floatingWhatsapp.setAttribute('aria-label', `Chat with ${config.brandName} on WhatsApp`);
+    if (config.demoMode) floatingWhatsapp.dataset.demoContact = 'true';
+  }
+
+  document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
+    link.href = `mailto:${config.email}`;
+    if (config.demoMode) link.dataset.demoContact = 'true';
+  });
+
+  document.querySelectorAll('form[action^="mailto:"]').forEach(form => {
+    form.action = `mailto:${config.email}`;
+    if (config.demoMode) form.dataset.demoContact = 'true';
+  });
+
+  document.querySelectorAll('.brand-copy strong, .footer-brand strong').forEach(el => {
+    el.textContent = config.brandName.toUpperCase();
+  });
+
+  document.querySelectorAll('.brand-copy small').forEach(el => {
+    el.textContent = `INK · ${config.city.toUpperCase()}`;
+  });
+
+  if (config.demoMode) {
+    document.querySelectorAll('a[data-demo-contact="true"]').forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        showDemoToast('contact details are intentionally placeholders. A real client build will connect the studio’s actual WhatsApp, email and booking destination.');
+      });
+    });
+
+    document.querySelectorAll('form[data-demo-contact="true"]').forEach(form => {
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        if (!form.reportValidity()) return;
+        showDemoToast('the consultation form is working as a UI demo. The production build will submit to the studio’s real inbox, form service or CRM.');
+      });
+    });
+  }
+
+  const currentPath = location.pathname.split('/').pop() || 'index.html';
+  const pageUrl = new URL(currentPath === 'index.html' ? './' : currentPath, config.siteUrl).href;
+
+  let canonical = document.querySelector('link[rel="canonical"]');
+  if (!canonical) {
+    canonical = document.createElement('link');
+    canonical.rel = 'canonical';
+    document.head.appendChild(canonical);
+  }
+  canonical.href = pageUrl;
+
+  ensureMeta('og:url', pageUrl, true);
+  ensureMeta('og:site_name', config.brandName, true);
+  ensureMeta('twitter:card', 'summary_large_image');
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'TattooParlor',
+    name: config.brandName,
+    url: config.siteUrl,
+    email: config.demoMode ? undefined : config.email,
+    telephone: config.demoMode || !config.whatsappNumber ? undefined : `+${config.whatsappNumber}`,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: config.studioAddress,
+      addressLocality: config.city,
+      addressCountry: config.country
+    },
+    sameAs: config.instagramUrl && config.instagramUrl !== '#' ? [config.instagramUrl] : []
+  };
+
+  let schemaTag = document.querySelector('#studio-schema');
+  if (!schemaTag) {
+    schemaTag = document.createElement('script');
+    schemaTag.id = 'studio-schema';
+    schemaTag.type = 'application/ld+json';
+    document.head.appendChild(schemaTag);
+  }
+  schemaTag.textContent = JSON.stringify(schema);
+}
+
+const configScript = document.createElement('script');
+configScript.src = 'site-config.js';
+configScript.onload = applySiteConfig;
+document.head.appendChild(configScript);
