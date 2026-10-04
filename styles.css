@@ -23,7 +23,7 @@ a{color:inherit;text-decoration:none}
   background:
     linear-gradient(90deg, rgba(5,5,5,.97) 0%, rgba(5,5,5,.88) 36%, rgba(5,5,5,.52) 62%, rgba(5,5,5,.18) 100%),
     linear-gradient(180deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.18) 70%, rgba(0,0,0,.70) 100%),
-    url("assets/nocturne-hero.jpg") center center / cover no-repeat;
+    url("nocturne-hero.png") 72% center / cover no-repeat;
 }
 .hero-content{padding:125px 4.7vw 140px;z-index:2}.eyebrow,.section-label{font-size:11px;font-weight:600;color:var(--beige);letter-spacing:.03em}.eyebrow i{display:inline-block;width:35px;height:1px;background:var(--red);vertical-align:middle;margin-right:14px}
 h1,h2{font-family:"Cormorant Garamond",serif;margin:0;line-height:.92;letter-spacing:-.03em}
@@ -78,7 +78,7 @@ h2{font-size:clamp(50px,5vw,76px)}
 .photo-card{background-size:cover;background-position:center;border:1px solid var(--line);position:relative;overflow:hidden}
 .photo-card::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.25) 58%,rgba(0,0,0,.72) 100%)}
 .photo-card span{position:absolute;left:18px;bottom:16px;z-index:2;color:#f2efe9;font-size:10px;letter-spacing:.08em}
-.studio-shot{background-image:url("assets/studio-visual.png");background-position:center center}
+.studio-shot{background-image:url("studio-visual.png");background-position:center center}
 .artist-1{background-image:url("assets/artist-1.png")}
 .artist-2{background-image:url("assets/artist-2.png")}
 .artist-3{background-image:url("assets/artist-3.png")}
